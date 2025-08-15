@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Služba pro databázi InfluxDB
+  influxdb:
+    image: influxdb:2.7 # Použijeme oficiální image InfluxDB verze 2.7
+    container_name: influxdb
+    ports:
+      - "8086:8086" # Zpřístupníme port databáze na našem počítači
+    volumes:
+      - influxdb-data:/var/lib/influxdb2 # Sem se budou ukládat data, aby se po restartu neztratila
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=my-user
+      - DOCKER_INFLUXDB_INIT_PASSWORD=my-super-secret-password
+      - DOCKER_INFLUXDB_INIT_ORG=my-org
+      - DOCKER_INFLUXDB_INIT_BUCKET=my-bucket
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-token # Tento token si zkopíruj, budeš ho potřebovat!
+
+  # Služba pro vizualizaci Grafana
+  grafana:
+    image: grafana/grafana:latest # Použijeme nejnovější oficiální image Grafany
+    container_name: grafana
+    ports:
+      - "3000:3000" # Zpřístupníme port Grafany na našem počítači
+    volumes:
+      - grafana-data:/var/lib/grafana # Sem se budou ukládat dashboardy a nastavení
+    depends_on:
+      - influxdb # Grafana se spustí až po InfluxDB
+    environment: # <-- Přidáme novou proměnnou sem
+    - GF_DASHBOARDS_MIN_REFRESH_INTERVAL=1s
+
+# Definice pojmenovaných volume pro persistentní data
+volumes:
+  influxdb-data:
+  grafana-data:

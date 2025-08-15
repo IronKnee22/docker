@@ -1,0 +1,9 @@
+[project]
+name = "grafana-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "influxdb-client>=1.49.0",
+]

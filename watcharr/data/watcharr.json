@@ -1,0 +1,15 @@
+{
+	"JWT_SECRET": "LyiQc/A4Cq4zbPW0UY9FtWlykqujwAyn9VN5BYJ3z26tcRMDB/N+ykHlN1OUQR2ETynAPyx4iZMuYZ5twQ25dA==",
+	"DEFAULT_COUNTRY": "US",
+	"USE_EMBY": false,
+	"SIGNUP_ENABLED": true,
+	"HEADER_AUTH": {
+		"enabled": false,
+		"headerName": "",
+		"autoLogin": false,
+		"logoutUrl": ""
+	},
+	"TWITCH": {
+		"accessTokenExpires": "0001-01-01T00:00:00Z"
+	}
+}
